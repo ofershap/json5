@@ -72,7 +72,7 @@ As of November 2026, no Go JSON5 port with a passing spec corpus is maintained: 
 Yes - that is the primary use case. Write configs with comments and trailing commas, decode into structs with <code>json</code> tags, and marshal back to strict JSON with <code>json5.Marshal</code> when another tool needs plain JSON.</details>
 
 <details><summary><b>Does it handle LLM output that is "almost JSON"?</b></summary>
-Often: comments, trailing commas, single quotes and unquoted keys are exactly the ways LLM output deviates from strict JSON, and those are all legal JSON5. It will not strip markdown fences or surrounding prose - extract the document first.</details>
+Only when the output is syntactically valid JSON5: comments, trailing commas, single quotes and unquoted keys are legal JSON5 and parse fine. It is not a repair tool - truncated documents, missing quotes, markdown fences or surrounding prose are not JSON5, and extracting or repairing those is a separate job.</details>
 
 ## Contributing
 

@@ -21,27 +21,29 @@ func (p *parser) parseAny() (any, error) {
 		return nil, s.errf("unexpected end of input")
 	}
 	r := s.peek()
-	switch {
-	case r == '{':
+	switch r {
+	case '{':
 		return p.parseObject()
-	case r == '[':
+	case '[':
 		return p.parseArray()
-	case r == '\'' || r == '"':
+	case '\'', '"':
 		return s.scanString()
-	case r == 't':
+	case 't':
 		return p.parseKeyword("true", true)
-	case r == 'f':
+	case 'f':
 		return p.parseKeyword("false", false)
-	case r == 'n':
+	case 'n':
 		return p.parseKeyword("null", nil)
-	case r == 'I' || r == 'N' || r == '+' || r == '-' || r == '.' || (r >= '0' && r <= '9'):
+	case 'I', 'N', '+', '-', '.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9':
 		lit, err := s.scanNumber()
 		if err != nil {
 			return nil, err
 		}
 		return p.numberValue(lit)
-	case r == '\\' && s.peekAt(1) == 'u':
-		return nil, s.errf("unexpected unicode escape outside string or identifier")
+	case '\\':
+		if s.peekAt(1) == 'u' {
+			return nil, s.errf("unexpected unicode escape outside string or identifier")
+		}
 	}
 	return nil, s.errf("unexpected character %q", r)
 }

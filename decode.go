@@ -123,8 +123,6 @@ func writeCanonical(buf *bytes.Buffer, val any) error {
 type Decoder struct {
 	r         io.Reader
 	buf       []byte
-	off       int
-	scanned   bool
 	sc        *scanner
 	useNumber bool
 	err       error
