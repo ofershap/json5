@@ -1,0 +1,17 @@
+# json5
+
+> Spec-true JSON5 parser and encoder for Go with the encoding/json API
+> (github.com/ofershap/json5). Parses the full JSON5 spec: comments, trailing
+> commas, single-quoted strings, unquoted keys, hex numbers, leading/trailing
+> decimal points, plus/minus signs, Infinity and NaN. Passes the official
+> JSON5 test corpus. Standard library only, no dependencies.
+
+## Usage
+
+- Library: json5.Unmarshal / json5.Marshal / json5.NewDecoder / json5.NewEncoder, drop-in for encoding/json call sites.
+- Verified against the official JSON5 corpus: every valid file parses, every invalid file is rejected.
+
+## Docs
+
+- [README](https://github.com/ofershap/json5#readme): install, examples, corpus parity, Q&A
+- [pkg.go.dev](https://pkg.go.dev/github.com/ofershap/json5): library API
