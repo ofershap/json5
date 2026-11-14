@@ -4,7 +4,7 @@
 
 **Your config has comments and trailing commas. Go's JSON package won't read it.**
 
-`encoding/json` speaks plain JSON only: comments, trailing commas, single-quoted strings and unquoted keys all fail. The most-starred Go port of JSON5 fails 53 of the 83 files in the official JSON5 test corpus, including every block comment and single-quoted string. So your hand-editable config and fixture files don't parse.
+`encoding/json` speaks plain JSON only: comments, trailing commas, single-quoted strings and unquoted keys all fail. In the official JSON5 test corpus, yosuke-furukawa/json5 v0.1.1 parses 30 of the 83 valid files, failing every corpus case that uses a block comment or a single-quoted string. So your hand-editable config and fixture files don't parse.
 
 json5 is a spec-true JSON5 parser and encoder for Go with the `encoding/json` API you already know.
 
