@@ -102,8 +102,8 @@ func (p *parser) parseObject() (any, error) {
 		}
 		var key string
 		var err error
-		switch r := s.peek(); {
-		case r == '\'' || r == '"':
+		switch r := s.peek(); r {
+		case '\'', '"':
 			key, err = s.scanString()
 		default:
 			key, err = s.scanIdentifier()
